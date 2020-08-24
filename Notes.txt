@@ -1,0 +1,31 @@
+Password Saver notes:
+
+     Patch Notes:
+
+         -V(2.6) Data Rewrite
+
+         -V(2.5) Minor Code Rewrites,
+                Debbuging:
+                    -Quit Bug Fix
+                    -Cancel Bug Fix
+
+         -V(2.3) Fixed Password Reset bug.
+
+
+     Updates:
+
+         -V(2.6) You can now store more than one password
+            in your account.
+
+         -V(2.5) Change Save Password Implement.
+            You can now change the password you save in your
+            account.
+
+         -V(2.4) No same user names. If a username is taken
+            You'll need to choose a name not used by someone else.
+
+         -V[Rewrite](2.2) Security Update! All previous versions
+            focused on the data and not on the actual
+            security. One way hashing has been implemented
+            as the first layer of security. Still only one
+            password can be stored in your account.
