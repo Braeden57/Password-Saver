@@ -2,6 +2,10 @@ Password Saver notes:
 
      Patch Notes:
 
+         -V(2.8) Minor Code Changes,
+                Debuggin:
+                    -Missing Save Password bug
+
          -V(2.6) Data Rewrite
 
          -V(2.5) Minor Code Rewrites,
@@ -11,6 +15,9 @@ Password Saver notes:
 
 
      Updates:
+
+         -V(2.8) Unable to login when no accounts are created.
+                A few options have been disabled.
 
          -V(2.7) You can now add more save Password into your
            account.

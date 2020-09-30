@@ -1,5 +1,7 @@
 #Password Saver
 
+Make Sure you install all the libraries using pip
+
 This Is my Password Saver Console Project
 You can create an accout locally on your machine and store passwords in the account.
 All sensitive data like your account Password and Saved Password are encrypted.

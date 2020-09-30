@@ -1,0 +1,32 @@
+Password Saver Updates and Versions
+******************************
+v1.0-Alpha release: demo
+v1.1-Account add: demo
+v1.2-Account Simple security: demo
+v1.3-Password Save: demo
+v1.4-Savable Data: first full demo
+v1.5-Unknown bug fix x1: demo
+v1.6-Code Rewrite: demo
+v1.7-Unkiwn Bug fix x3: demo
+v1.8-Release Notes [Impliment]: demo
+v1.9-Release Notes Rewrite: demo
+v2.0- Beta Release: Full
+v2.1-Unknown Bug Fix x1: full
+v2.2-Security Update: Full
+v2.3-Bug fix[Password Reset]: Full
+v2.4-No same Username [Impliment]: Full
+v2.5-Change Save Pass[Impliment]: Full
+v2.5.2-Debugging[Quit Bug, Cancel Bug] + Minor Code Rewrites
+v2.6 Data rewrite (allows multiple save passwords)
+v2.7 You can now add additional save passwords into your account [impliment]
+v2.8 Minor Code rewrites, Few bug fixes
+
+In Dev:
+******
+nothing
+
+Proposed Updates 
+***************
+User Self Delete
+Admin Delete user
+v3.0-Rewrite + GUI
