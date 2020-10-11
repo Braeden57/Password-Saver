@@ -82,40 +82,32 @@ def register():
 
     f.close()
 
-    print()
-    print("<Account setup>")
+    print("\n<Account setup>")
     print("Type cancel at anytime to cancel.")
-    username_create = False
-    while not username_create:
+    username_create = True
+    while username_create:
         # Sets username, password, and the wanted password to be saved.
         print("   Your username must be 5 characters or longer.")
         userName = input("   Please set your username > ")
 
-        if userName == "":
-            print("This cannot be blank.")
-            print()
+        if userName == "": print("This cannot be blank.\n")
 
-        elif userName in users:
-            print('Username is taken, please choose a different name.')
-            print()
+        elif userName in users: print('Username is taken, please choose a different name.\n')
 
-        elif len(userName) < 5:
-            print("Username is too short. Please try again.")
-            print()
+        elif len(userName) < 5: print("Username is too short. Please try again.\n")
 
         elif userName == "cancel":
             print("< Canceling >")
-            username_create = True
             time.sleep(1)
             home()
+            break
 
         else:
-            username_create = True
-            pw_maker = False
-            while not pw_maker:
+            username_create = False
+            pw_maker = True
+            while pw_maker:
                 print("   Minimum of 8 characters")
-                userPass: str = input("   Please set your password > ")
-                print()
+                userPass: str = input("   Please set your password > \n")
 
                 if len(userPass) >= 8:
 
@@ -129,16 +121,14 @@ def register():
                     append_file1.write('\n')
                     append_file1.close()
                     time.sleep(1)
-                    print()
-                    print("Account has been created")
-                    print()
-                    savePassLoop = False
+                    print("\nAccount has been created\n")
+                    savePassLoop = True
                     savePassD = {}
-                    while not savePassLoop:
+                    while savePassLoop:
                         print('When done just hit the enter key')
                         savePass = input("   What password would you like to save in this account > ")
                         if len(savePass) == 0:
-                            savePassLoop = True
+                            savePassLoop = False
                         elif len(savePass) > 0:
                             wfor = input('  What is this password for > ')
                             append_file2.write(userName + ":" + str(password_encrypt(savePass.encode(), gPassword).decode()))
@@ -148,7 +138,6 @@ def register():
                             savePassD[wfor] = str(password_encrypt(savePass.encode(), gPassword).decode())
                     append_file2.close()
                     append_file3.close()
-                    print()
 
                     user = User(userName, hashlib.md5(userPass.encode()).hexdigest(), savePassD)
                     logged_in(user)
@@ -161,9 +150,9 @@ def register():
 
                 elif userPass == "cancel":
                     print("< Canceling >")
-                    pw_maker = True
                     time.sleep(1)
                     home()
+                    break
 
 
 def login():
@@ -224,76 +213,73 @@ def login():
             data = {'username': user, 'password': users[user], 'savePass': passDict}
             userData[user] = data
 
-        username_check = False
-        password_check = False
+        username_check = True
+        password_check = True
 
         adminName = '9581b8785e452a9d9672ddfb2277b2af'
         adminPass = '9609c233f5c309419fa6393a1b959c13'
 
-        print('Type cancel at anytime to cancel.')
-        print()
+        print('Type cancel at anytime to cancel.\n')
 
-        while not username_check:
+        while username_check:
             # Takes users input for username
-            inputName = input('What is your Username > ').lower().strip()
+            inputName = input('What is your Username > ')
 
             # Checks if username is correct
             if inputName in userData:
-                username_check = True
-                while not password_check:
+                username_check = False
+                while password_check:
 
                     # Takes users input for pw
-                    inputPass = input(f"Please enter password for {inputName} > ").lower().strip()
+                    inputPass = input(f"Please enter password for {inputName} > ")
 
                     if hashlib.md5(inputPass.encode()).hexdigest() == userData[inputName]['password']:
                         user = User(inputName, inputPass, userData[inputName]['savePass'])
-                        password_check = True
+                        password_check = False
                         logged_in(user)
 
                     elif inputPass == "cancel":
                         print("< Canceling >")
-                        password_check = True
                         time.sleep(1)
                         home()
+                        break
 
                     elif hashlib.md5(inputPass.encode()).hexdigest() != userData[inputName]['password']:
                         print("That is the incorrect password. Please try again.")
 
             elif hashlib.md5(inputName.encode()).hexdigest() == adminName:
-                username_check = True
-                while not password_check:
+                username_check = False
+                while password_check:
 
                     # Takes users input for pw
                     inputAdminPass = input("Please enter password for the Admin > ")
-                    inputAdminPass = str(inputAdminPass)
 
                     if hashlib.md5(inputAdminPass.encode()).hexdigest() == adminPass:
-                        password_check = True
                         admin()
+                        break
 
                     elif inputAdminPass == "cancel":
                         print("< Canceling >")
-                        password_check = True
                         time.sleep(1)
                         home()
+                        break
 
             elif inputName == "cancel":
                 print("< Canceling >")
-                username_check = True
                 time.sleep(1)
                 home()
+                break
 
             # Tells user if username is incorrect
-            else:
-                print("That is an invalid username, please try again.")
+            else: print("That is an invalid username, please try again.")
 
 
 def admin():
 
-    print("\n < Welcome Braeden >\n")
+    print("\n < Welcome >\n")
 
-    login_op = False
-    while not login_op:
+    login_op = True
+    while login_op:
         print(" Options:")
         print(" < logout | user.list.show | user.info.show >")
 
@@ -304,44 +290,40 @@ def admin():
         if userSelect == "logout":
             print(" <Logging out> from <Admin>")
             print("Logout successful")
-            login_op = True
+            home()
+            break
 
-        elif userSelect == "user.list.show":
-            pass
+        elif userSelect == "user.list.show": pass
 
-        elif userSelect == "user.info.show":
-            pass
+        elif userSelect == "user.info.show": pass
 
-        elif userSelect == "":
-            print("You cannot leave this blank.")
+        elif userSelect == "": print("You cannot leave this blank.")
 
-        else:
-            print("That is an invalid option. Please try again.")
+        else: print("That is an invalid option. Please try again.")
 
 
 def logged_in(user):
     append_file2 = open('UsersSP.txt', 'a')
     append_file3 = open('WSPF.txt', 'a')
-    login_op = False
+    login_op = True
 
-    while not login_op:
+    while login_op:
         print("\n Options:")
         print(" < logout | my.info | reset.password | change.savedPassword >")
         print(' < add.pass >')
 
         user_select = input(" > ")
-        user_select = str(user_select)
+        user_select.lower()
 
         if user_select == "logout":
             print(f" <Logging out> from < {user.userName} >")
             time.sleep(1)
             print("Logout successful")
-            login_op = True
             home()
+            break
 
         elif user_select == "my.info":
-            print()
-            print('Your passwords:')
+            print('\nYour passwords:')
             # Gives them the saved pw in the account
             for r in user.savePassDict:
                 print(f'{r}: {password_decrypt(user.savePassDict[r].encode(), gPassword).decode()}')
@@ -349,8 +331,8 @@ def logged_in(user):
         elif user_select == "reset.password":
             print("Type cancel at anytime to cancel.")
 
-            password_check = False
-            while not password_check:
+            password_check = True
+            while password_check:
                 password = input("Please enter your current password to activate > ")
                 if password == "":
                     print("You cant leave this blank.")
@@ -362,9 +344,9 @@ def logged_in(user):
 
                 else:
                     if hashlib.md5(password.encode()).hexdigest() == user.password:
-                        password_check = True
-                        pw_maker = False
-                        while not pw_maker:
+                        password_check = False
+                        pw_maker = True
+                        while pw_maker:
                             print("   Minimum of 8 characters")
                             newSavedPass = input("Please set your new password > ")
 
@@ -389,7 +371,7 @@ def logged_in(user):
                                 f.close()
 
                                 print("Your new password has been set")
-                                pw_maker = True
+                                break
 
                             elif len(newSavedPass) == 0:
                                 print("Password cant be blank.")
@@ -399,8 +381,8 @@ def logged_in(user):
 
                             elif newSavedPass == "cancel":
                                 print("< Canceling >")
-                                pw_maker = True
                                 time.sleep(1)
+                                break
 
                     elif hashlib.md5(password.encode()).hexdigest() != user.password:
                         print("That is the incorrect password. Please try again.")
@@ -517,27 +499,26 @@ def print_user_data(user_info):
 
 
 def home():
-    system_home = False
-    while not system_home:
+    system_home = True
+    while system_home:
         print("\n < register | login | quit | notes > ")
 
         user_select = input(" > ")
         user_select.lower()
 
         if user_select == "register":
-            system_home = True
             register()
+            break
 
         elif user_select == "login":
-            system_home = True
             login()
+            break
 
         elif user_select == "quit":
             print("Are you sure you want to quit?")
             print(" < yes | no >")
 
             user_select = input(" > ")
-            user_select = str(user_select)
 
             if user_select == "yes":
                 exit()
